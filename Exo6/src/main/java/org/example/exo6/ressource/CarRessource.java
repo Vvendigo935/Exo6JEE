@@ -8,11 +8,13 @@ import org.example.exo6.entity.Car;
 import org.example.exo6.service.CarService;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Path("/car")
 public class CarRessource {
 
     private CarService carService;
+    private List<Car> cars;
 
     @Inject
     public CarRessource(CarService carService) {
@@ -25,6 +27,13 @@ public class CarRessource {
         return new Car(1,"Volkswagen", LocalDate.of(01,01,2000),"Blue");
 
     }
+
+    @GET
+    @Path("/carlist")
+    public List<Car> cars() {
+        return cars();
+    }
+
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -49,12 +58,13 @@ public class CarRessource {
         return carService.save(8, brand, fabricationDate, color);
     }
 
-//    @PATCH
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    public Car patchCar(Car car) {
-//        return carService.
-//    }
+    @PATCH
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Car patchCar(Car car) {
+
+return car.update(id,brand,fabricationDate,color);
+    }
 
     @DELETE
     @Path("/delete/{id}")
