@@ -26,7 +26,6 @@ public class CarRessource {
 
     }
 
-
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -40,7 +39,7 @@ public class CarRessource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Car postCarWithService() {
-        return carService.save(33, "BMW", LocalDate.of(01,01,2000),"Red");
+        return carService.save(33, "BMW", LocalDate.parse("01-01-2000"),"Red");
     }
 
     @POST
@@ -50,6 +49,12 @@ public class CarRessource {
         return carService.save(8, brand, fabricationDate, color);
     }
 
+//    @PATCH
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public Car patchCar(Car car) {
+//        return carService.
+//    }
 
     @DELETE
     @Path("/delete/{id}")
